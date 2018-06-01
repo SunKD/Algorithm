@@ -27,4 +27,4 @@ function RisingSq(curr, num) {
     return RisingSq(curr - 2, num);
 
 }
-RisingSq(1, 2);
+RisingSq(1, 4);
