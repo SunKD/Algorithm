@@ -15,8 +15,8 @@ function selectionSort(arr) {
     }
     return arr;
 }
-var arr = [10, 3, 2, 12, 0];
-var arr1 = [25, 4, -3, 12, 80];
+// var arr 3, 2, 12, 0];
+// var arr1 = [25, = [10, 4, -3, 12, 80];
 // console.log(selectionSort(arr1));
 
 function insertionSort(arr) {
@@ -69,4 +69,26 @@ function mergeSort(arr, start = 0, end = arr.length - 1) {
     return merge(mergeSort(arr, start, mid), mergeSort(arr, mid + 1, end));
 }
 
-console.log(mergeSort([3, 4, 1, 10, 33, 7]));
+// console.log(mergeSort([3, 4, 1, 10, 33, 7]));
+
+
+function quickSort(arr){
+    if(arr.length <=1){
+        return arr;
+    }
+    var left = [];
+    var right = [];
+    var pivot = arr[0];
+
+    
+    for(var i = 1; i < arr.length; i++){
+        if(arr[i] < pivot){
+            left.push(arr[i]);
+        }else{
+            right.push(arr[i])
+        }
+    }
+    return quickSort(left).concat(pivot).concat(quickSort(right));
+}
+
+console.log(quickSort([30, 4, 100, 10, 33, 7]));
