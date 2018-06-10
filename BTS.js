@@ -95,15 +95,36 @@ BST.prototype.min = function(){
     }
 }
 
-var BST1 = new BST();
-console.log(BST1.add(3))
-BST1.add(2);
-BST1.add(10);
-console.log(BST1);
+// var BST1 = new BST();
+// console.log(BST1.add(3))
+// BST1.add(2);
+// BST1.add(10);
+// console.log(BST1);
 
-console.log(BST1.contains(3));
-console.log(BST1.contains(11));
+// console.log(BST1.contains(3));
+// console.log(BST1.contains(11));
 
-BST1.max();
-BST1.min();
+// BST1.max();
+// BST1.min();
 
+
+
+function BSTRecus(arr, val, start = 0, end=arr.length-1){
+    var mid = Math.floor((start+end)/2);
+    if(arr[mid] === val){
+        return mid;
+    }
+
+    if(start > end){
+        return false;
+    }
+
+    if(val < arr[mid]){
+        return BSTRecus(arr, val, start, mid-1);
+    }else{
+        return BSTRecus(arr, val, mid+1, end);
+    }
+
+}
+var bstArray = [2, 4, 5, 6, 8, 9, 10]
+console.log(BSTRecus(bstArray, 2));
