@@ -36,7 +36,7 @@ Heap.prototype.addHeapRecurs = function (val, idx = this.array.length, parent = 
         var temp = this.array[parent];
         this.array[parent] = this.array[idx];
         this.array[idx] = temp;
-        return this.addHeapRecurs(val, parent, Math.floor(parent/2), true);
+        return this.addHeapRecurs(val, parent, Math.floor(parent / 2), true);
     }
     return this.array;
 }
@@ -65,9 +65,9 @@ Heap.prototype.removeHeap = function (val) {
             idx = i;
             break;
         }
-        else{
-            return false;
-        }
+    }
+    if(idx == null){
+        return false;
     }
     var temp = this.array[idx];
     this.array[idx] = this.array[this.array.length - 1];
@@ -82,18 +82,16 @@ Heap.prototype.removeHeap = function (val) {
     //sink down
     if (this.array[idx] > this.array[path]) {
         while (idx < this.array.length && (this.array[idx] > this.array[path])) {
-            if (this.array[idx] > this.array[path]) {
-                let temp = this.array[path];
-                this.array[path] = this.array[idx];
-                this.array[idx] = temp;
-                idx = path;
-                child = child * 2;
-                child2 = child + 1;
-                if(this.array[child2] == null){
-                    path = child;
-                }else{
-                    path = this.array[child] < this.array[child2] ? child : child2;
-                }
+            let temp = this.array[path];
+            this.array[path] = this.array[idx];
+            this.array[idx] = temp;
+            idx = path;
+            child = child * 2;
+            child2 = child + 1;
+            if (this.array[child2] == null) {
+                path = child;
+            } else {
+                path = this.array[child] < this.array[child2] ? child : child2;
             }
         }
         return this.array;
