@@ -3,7 +3,7 @@ function stockSelling(arr){
     var Psell = 0;
     var bought = arr[0];
     total -= bought;
-    for(let i = 0; i < arr.length; i++){
+    for(let i = 1; i < arr.length; i++){
         if(arr[i] >= bought && arr[i] >Psell){
             Psell = arr[i];
         }
@@ -12,7 +12,7 @@ function stockSelling(arr){
             total += Psell;
             console.log("sold the stock", Psell)
             total -= arr[i];
-            console.log("I sold my stock: ", arr[i]);
+            console.log("I bought my stock: ", arr[i]);
             Psell = 0; 
             bought = arr[i];
         }
@@ -22,6 +22,6 @@ function stockSelling(arr){
     return total;
 }
 
-// console.log(stockSelling([100, 180, 260, 310, 40, 535, 695]));
-// console.log(stockSelling([400, 180, 260, 310, 40, 535, 695]));
-// console.log(stockSelling([100, 40, 180, 50, 50, 50, 50]));
+console.log(stockSelling([100, 180, 260, 310, 40, 535, 695]));
+console.log(stockSelling([400, 180, 260, 310, 40, 535, 695]));
+console.log(stockSelling([100, 40, 180, 50, 50, 50, 50]));
