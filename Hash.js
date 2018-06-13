@@ -56,16 +56,38 @@ HT.prototype.add = function (key, val) {
     return this.arr;
 }
 
+function Node(key, val){
+    this.val = val;
+    this.key = key;
+    this.next = null;
+}
 
+HT.prototype.chaning = function(key, val){
+    var hashed = this.hash(key);
+    var idx = hashed % this.arr.length;
+    if(this.arr[idx] == null){
+        this.arr[idx] = new Node(key, val);
+        console.log(this.arr[idx], "this is arr[idx]")
+        console.log(this.arr)
+    }else{
+        var newNode = new Node(key, val);
+        console.log(this.arr[idx], "this is arr[idx]2")
+        newNode.next = this.arr[idx];
+        this.arr[idx] = newNode;
+        console.log(this.arr, "this is after adding new node in the smae index")
+    }
+}
 
 var hashT = new HT();
 // hashT.add('Jully', '425-555-6666')
 // hashT.add('Mike', '534-562-9561')
-console.log(hashT.add('Tim', '252-256-8458'))
-console.log(hashT.add('Henry', '252-256-8458'))
-console.log(hashT.add('Mike', '252-256-8458'))
-console.log(hashT.add('Jully', '252-256-8458'))
-
+console.log(hashT.chaning('Tim', '252-256-8458'))
+console.log(hashT.chaning('Henry', '252-256-8458'))
+console.log(hashT.chaning('Mike', '252-256-8458'))
+console.log(hashT.chaning('Jully', '252-256-8458'))
+console.log(hashT.chaning('Jully', '252-256-8458'))
+console.log(hashT.chaning('Jully', '252-256-8458'))
+console.log(hashT.chaning('Jully', '252-256-8458'))
 // hashT.add('Ted', '513-571-6987')
 // hashT.add('Juliet', '425-555-6666')
 // hashT.add('Keith', '534-562-9561')
