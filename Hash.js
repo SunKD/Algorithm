@@ -36,7 +36,7 @@ HT.prototype.resize = function () {
     }
     this.arr = newArr;
 }
-HT.prototype.add = function (key, val) {
+HT.prototype.openAddressingAdd = function (key, val) {
     var hashed = this.hash(key);
     var idx = hashed % this.arr.length;
 
@@ -62,7 +62,7 @@ function Node(key, val){
     this.next = null;
 }
 
-HT.prototype.chaning = function(key, val){
+HT.prototype.chaningAdd = function(key, val){
     var hashed = this.hash(key);
     var idx = hashed % this.arr.length;
     if(this.arr[idx] == null){
@@ -81,18 +81,18 @@ HT.prototype.chaning = function(key, val){
 var hashT = new HT();
 // hashT.add('Jully', '425-555-6666')
 // hashT.add('Mike', '534-562-9561')
-console.log(hashT.chaning('Tim', '252-256-8458'))
-console.log(hashT.chaning('Henry', '252-256-8458'))
-console.log(hashT.chaning('Mike', '252-256-8458'))
-console.log(hashT.chaning('Jully', '252-256-8458'))
-console.log(hashT.chaning('Jully', '252-256-8458'))
-console.log(hashT.chaning('Jully', '252-256-8458'))
-console.log(hashT.chaning('Jully', '252-256-8458'))
-// hashT.add('Ted', '513-571-6987')
-// hashT.add('Juliet', '425-555-6666')
-// hashT.add('Keith', '534-562-9561')
-// hashT.add('Gina', '513-571-6987')
-// console.log(hashT.add('Tim', '252-256-8458'))
-// hashT.add(6, 55)
-// hashT.add(9, 33)
-// console.log(hashT.add(7, 13))
+// console.log(hashT.chaning('Tim', '252-256-8458'))
+// console.log(hashT.chaning('Henry', '252-256-8458'))
+// console.log(hashT.chaning('Mike', '252-256-8458'))
+// console.log(hashT.chaning('Jully', '252-256-8458'))
+// console.log(hashT.chaning('Jully', '252-256-8458'))
+// console.log(hashT.chaning('Jully', '252-256-8458'))
+// console.log(hashT.chaning('Jully', '252-256-8458'))
+hashT.openAddressingAdd('Ted', '513-571-6987')
+hashT.openAddressingAdd('Juliet', '425-555-6666')
+hashT.openAddressingAdd('Keith', '534-562-9561')
+hashT.openAddressingAdd('Gina', '513-571-6987')
+console.log(hashT.openAddressingAdd('Tim', '252-256-8458'))
+hashT.openAddressingAdd('6', 55)
+hashT.openAddressingAdd('9', 33)
+console.log(hashT.openAddressingAdd('7', 13))
