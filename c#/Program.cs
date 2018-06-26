@@ -16,7 +16,7 @@ namespace c_
             // string [] input = {"kumar", "Mishra" , "Hello" , "Hi", "good", "day", "Bye"};
             // printOutput(input);
             // System.Console.WriteLine(ReverseString("hello"));
-            System.Console.WriteLine(consecutiveStr("aaaaaaabbddccccadddccc"));
+            System.Console.WriteLine(consecutiveStr("aaaaaabbcbbbbbcbbbb"));
 
         }
 
@@ -30,7 +30,7 @@ namespace c_
                 {
                     int idx = input[i] - 'a';
                     numCount[idx]++;
-                    
+
                 }
             }
             // numCount.ToString();
@@ -75,15 +75,18 @@ namespace c_
         static void printOutput(String[] arr)
         {
             int max = arr[0].Length;
-            for(int i = 1; i < arr.Length; i++){
-                if(arr[i].Length > max){
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i].Length > max)
+                {
                     max = arr[i].Length;
                 }
             }
-            max +=2;
+            max += 2;
             System.Console.WriteLine(new string('*', max));
-            for(int i= 0; i < arr.Length; i++){
-                System.Console.WriteLine(String.Format("*{0, -" + max +"}*", arr[i]));
+            for (int i = 0; i < arr.Length; i++)
+            {
+                System.Console.WriteLine(String.Format("*{0, -" + max + "}*", arr[i]));
             }
             System.Console.WriteLine(new string('*', max));
         }
@@ -95,18 +98,33 @@ namespace c_
             return new string(arr);
         }
 
-        static char consecutiveStr(string str){
+        static char consecutiveStr(string str)
+        {
             Dictionary<char, int> dic = new Dictionary<char, int>();
-            for(int i = 0; i < str.Length; i++){
-                if(!dic.ContainsKey(str[i])){
-                    dic.Add(str[i], 1);
-                }else{
-                    dic[str[i]] += 1;
+            int count = 0;
+            for (int i = 0; i < str.Length - 1; i++)
+            {
+                if (str[i + 1] == str[i])
+                {
+                    count++;
+                }
+                else
+                {
+                    if (dic.ContainsKey(str[i]))
+                    {
+                        count = 0;
+                        continue;
+                    }
+                    else
+                    {
+                        dic.Add(str[i], count);
+                        count = 0;
+                    }
                 }
             }
-            // System.Console.WriteLine(dic.Keys.Max());
-            return dic.FirstOrDefault(x=>x.Value == dic.Values.Max()).Key;
+            return dic.FirstOrDefault(x => x.Value == dic.Values.Max()).Key;
         }
-    }
 
+
+    }
 }
