@@ -101,7 +101,7 @@ namespace c_
         static char consecutiveStr(string str)
         {
             Dictionary<char, int> dic = new Dictionary<char, int>();
-            int count = 0;
+            int count = 1;
             for (int i = 0; i < str.Length - 1; i++)
             {
                 if (str[i + 1] == str[i])
@@ -112,16 +112,27 @@ namespace c_
                 {
                     if (dic.ContainsKey(str[i]))
                     {
-                        count = 0;
-                        continue;
+                        if (dic[str[i]] < count)
+                        {
+                            dic[str[i]] = count;
+                            count = 1;
+                        }
+                        else
+                        {
+                            count = 1;
+                            continue;
+                        }
+
                     }
                     else
                     {
                         dic.Add(str[i], count);
-                        count = 0;
+                        count = 1;
+                        
                     }
                 }
             }
+            System.Console.WriteLine(dic);
             return dic.FirstOrDefault(x => x.Value == dic.Values.Max()).Key;
         }
 
