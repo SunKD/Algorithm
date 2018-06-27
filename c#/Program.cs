@@ -18,6 +18,11 @@ namespace c_
             // System.Console.WriteLine(ReverseString("hello"));
             System.Console.WriteLine(consecutiveStr("aaaaaabbcbbbbbcbbbb"));
 
+
+
+            int[] nuts = new int[] { 1, 5, 4, 2, 7, 35 };
+            int[] bolts = new int[] { 35, 2, 4, 5, 1, 7 };
+            Sort(nuts, bolts);
         }
 
         static void countAlpabet(String input)
@@ -128,7 +133,7 @@ namespace c_
                     {
                         dic.Add(str[i], count);
                         count = 1;
-                        
+
                     }
                 }
             }
@@ -136,6 +141,37 @@ namespace c_
             return dic.FirstOrDefault(x => x.Value == dic.Values.Max()).Key;
         }
 
+
+        public static void Sort(int[] nuts, int[] bolts)
+        {
+
+            // int pivot = 0;
+            for (int i = 0; i < nuts.Length; i++)
+            {
+                int pivot = bolts[i];
+                List<int> left = new List<int>();
+                List<int> right = new List<int>();
+                for (int j = 0; j < nuts.Length; j++)
+                {
+                    if (nuts[j] < pivot)
+                    {
+                        left.Add(nuts[j]);
+                    }
+                    else
+                    {
+                        right.Add(nuts[j]);
+                    }
+                }
+                // left.Add(pivot);
+                nuts = left.Concat(right).ToArray();
+                // System.Console.WriteLine(nuts);
+            }
+            for (int i = 0; i < nuts.Length; i++)
+            {
+                System.Console.WriteLine(nuts[i]);
+            }
+
+        }
 
     }
 }
