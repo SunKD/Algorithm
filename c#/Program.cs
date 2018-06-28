@@ -23,6 +23,10 @@ namespace c_
             int[] nuts = new int[] { 1, 5, 4, 2, 7, 35 };
             int[] bolts = new int[] { 35, 2, 4, 5, 1, 7 };
             Sort(nuts, bolts);
+            System.Console.WriteLine(OneAway("pale", "ple"));
+            System.Console.WriteLine(OneAway("pales", "pale"));
+            System.Console.WriteLine(OneAway("pale", "bale"));
+            System.Console.WriteLine(OneAway("pale", "bake"));
         }
 
         static void countAlpabet(String input)
@@ -144,8 +148,6 @@ namespace c_
 
         public static void Sort(int[] nuts, int[] bolts)
         {
-
-            // int pivot = 0;
             for (int i = 0; i < nuts.Length; i++)
             {
                 int pivot = bolts[i];
@@ -162,16 +164,66 @@ namespace c_
                         right.Add(nuts[j]);
                     }
                 }
-                // left.Add(pivot);
                 nuts = left.Concat(right).ToArray();
-                // System.Console.WriteLine(nuts);
             }
             for (int i = 0; i < nuts.Length; i++)
             {
                 System.Console.WriteLine(nuts[i]);
             }
-
         }
 
+        static bool OneAway(string str1, string str2)
+        {
+            int len1 = str1.Length;
+            int len2 = str2.Length;
+            if(Math.Abs(len1 - len2) > 1) return false;
+            
+                string shorter = str1.Length > str2.Length ? str2 : str1;
+                string longer = str1.Length > str2.Length ? str1 : str2;
+                int idx1 = 0;
+                int idx2 = 0;
+                bool foundDiff = false;
+                while (idx1 < str1.Length && idx2 < str2.Length)
+                {
+                    // if(shorter.Length + 1 != longer.Length) return false;
+                    if (shorter[idx1] != longer[idx2])
+                    {
+                        System.Console.WriteLine(str1[idx1] + " " +str2[idx2]);
+                        if(shorter[idx1] != longer[idx2]){
+                            if (foundDiff) return false;
+                            foundDiff = true;
+                            if(shorter.Length == longer.Length){
+                                idx1++;
+                            }
+                        }
+                        // System.Console.WriteLine("changed to true");
+                    }
+                    else
+                    {
+                        idx1++;
+                    }
+                    idx2++;
+                }
+            // }
+            // else
+            // {
+            //     int count = 0;
+            //     for (int i = 0; i < len1; i++)
+            //     {
+            //         if (str1[i] != str1[i])
+            //         {
+            //             count++;
+            //         }
+            //         if (count > 1)
+            //         {
+            //             System.Console.WriteLine("more than one diff");
+            //             return false;
+                        
+            //         }
+            //     }
+            // }
+            // System.Console.WriteLine("this should be true");
+            return true;
+        }
     }
 }
